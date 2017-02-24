@@ -5,6 +5,21 @@
  */
 // jshint esversion: 6
 // FROM: http://stackoverflow.com/a/2450976/3025981
+
+BSZ_APP = {n: 25, rows: 5, spacing: 70, margin: 3};
+
+function cx(d, i) {
+    return (Math.floor(i / BSZ_APP.rows)) * BSZ_APP.spacing + r([BSZ_APP.n]) + BSZ_APP.margin;
+}
+
+function cy(d, i) {
+    return (BSZ_APP.rows - (i % BSZ_APP.rows) - 1) * BSZ_APP.spacing + r([BSZ_APP.n]) + BSZ_APP.margin;
+}
+
+function r(d) {
+    return d[0];
+}
+
 function shuffle(array) {
     var currentIndex = array.length,
         temporaryValue, randomIndex;
@@ -45,7 +60,13 @@ function init(n) {
 }
 
 $(function() {
-    init(25);
+    var balls = _.range(BSZ_APP.n);
+    var max_radius = r([BSZ_APP.n]);
+    var max_cx = _.max(_.map(balls, cx));
+    var max_cy = _.max(_.map(balls, cy))
+    $("#picture").attr("width", max_cx + max_radius + BSZ_APP.margin*2)
+        .attr("height", max_cy + max_radius + BSZ_APP.margin*2);
+    init(BSZ_APP.n);
     do_shuffle();
     // if buttons are presented
     $("#btnShuffle").on('click', do_shuffle);
@@ -123,24 +144,10 @@ function update(arr, sorter, beginsorting=false) {
     // arr from the data, create sorter
     // and run update with that sorter
 
-    var columns = 5;
-    var spacing = 70;
-
-    function cx(d, i) {
-        return ((i % columns) + 1) * spacing;
-    }
-
-    function cy(d, i) {
-        return (Math.floor(i / columns) + 1) * spacing + 50;
-    }
-
     function key(d) {
         return d[0];
     }
 
-    function r(d) {
-        return d[0];
-    }
 
     function position(d, i) {
         return i;
