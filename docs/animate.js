@@ -6,7 +6,7 @@
 // jshint esversion: 6
 // FROM: http://stackoverflow.com/a/2450976/3025981
 
-BSZ_APP = {n: 25, rows: 5, spacing: 70, margin: 3};
+BSZ_APP = {n: 25, rows: 5, spacing: 70, margin: 3, duration: 700};
 
 function cx(d, i) {
     return (Math.floor(i / BSZ_APP.rows)) * BSZ_APP.spacing + r([BSZ_APP.n]) + BSZ_APP.margin;
@@ -161,7 +161,7 @@ function update(arr, sorter, beginsorting=false) {
     function update_transition(selection) {
         return selection.attr("data-position", position)
             .transition()
-            .duration(1000)
+            .duration(BSZ_APP.duration)
             .attr("cx", cx)
             .attr("cy", cy)
             .style("fill", fill);
