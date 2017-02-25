@@ -9,7 +9,7 @@ function sorting_widget(picture_selector, number_of_elements, options) {
     var max_picture_size = options.max_picture_size || 400;
     var min_picture_size = options.min_picture_size || 100;
     var rows = options.rows || 6;
-    var margin = options.margin || 3;
+    var margin = options.margin || 6;
     var spacing = options.spacing || 1.4;
     var duration = options.duration || 700;
     var colors = options.colors || {'default': "#7570b3", 'bubble': '#d95f02', 'sorted': '#1b9e77'};
